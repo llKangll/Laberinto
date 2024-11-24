@@ -1,41 +1,127 @@
 const challenges = [
+
   {
-    text: "Elige las figuras que siguen el patrón: rojo, azul, amarillo, rojo, azul...",
+  text: "Selecciona los números que sean pares y no divisibles por 4.",
+  options: [
+    { text: "2", color: "blue" },
+    { text: "6", color: "red" },
+    { text: "8", color: "green" },
+    { text: "10", color: "yellow" },
+    { text: "12", color: "purple" }
+  ],
+  correct: ["2", "6", "10"],
+  type: "multi-select",
+},
+
+  {
+  text: "Selecciona las palabras que siguen el patrón 'consonante-vocal-consonante'.",
+  options: [
+    { text: "Sol", color: "blue" },
+    { text: "Casa", color: "red" },
+    { text: "Pan", color: "green" },
+    { text: "Juez", color: "purple" },
+    { text: "Cine", color: "yellow" }
+  ],
+  correct: ["Sol"],
+  type: "multi-select",
+},
+
+  {
+  text: "Selecciona las figuras que aparecen dos veces en esta secuencia: 🟢🔴🔵🟡🔴🟢🔵🔵",
+  options: [
+    { text: "🔵", color: "blue" },
+    { text: "🔴", color: "red" },
+    { text: "🟡", color: "yellow" },
+    { text: "🟢", color: "green" }
+  ],
+  correct: ["🔵", "🟢", "🔴"],
+  type: "multi-select",
+},
+
+  {
+    text: "Selecciona las figuras que siguen el patrón: rojo, azul, amarillo, rojo, azul...",
     options: [
-      { text: "Rojo", class: "red" },
-      { text: "Verde", class: "green" },
-      { text: "Azul", class: "blue" },
-      { text: "Amarillo", class: "yellow" },
+      { text: "Rojo", color: "blue" },
+      { text: "Verde", color: "yellow" },
+      { text: "Azul", color: "red" },
+      { text: "Amarillo", color: "green" }
     ],
     correct: ["Rojo", "Azul", "Amarillo"],
     type: "multi-select",
-    disorderColors: true,
   },
   {
-    text: "¿Cuál cofre contiene la llave? (divisible por 3 pero no por 5)",
-    options: ["15", "18", "20"],
-    correct: "18",
+    text: "¿Cuál número sigue la serie? 2, 4, 8, 16, 32...",
+    options: ["48", "64", "128", "256"],
+    correct: "64",
     type: "single-select",
   },
   {
-    text: "Completa el patrón: 1, 2, 4, 8...",
-    options: ["12", "14", "16", "18"],
-    correct: "16",
+    text: "Selecciona los números primos menores de 20.",
+    options: [
+      { text: "4", color: "blue" },
+      { text: "7", color: "green" },
+      { text: "15", color: "red" },
+      { text: "19", color: "yellow" },
+      { text: "13", color: "purple" }
+    ],
+    correct: ["7", "13", "19"],
+    type: "multi-select",
+  },
+  {
+    text: "¿Cuál cofre tiene la llave? (Número impar divisible entre 3 pero no entre 5)",
+    options: ["15", "21", "27", "33"],
+    correct: "21",
     type: "single-select",
   },
   {
-    text: "Selecciona los elementos que no encajan con el grupo: Triángulo, Cuadrado, Círculo, Pizza...",
-    options: ["Triángulo", "Cuadrado", "Círculo", "Pizza"],
+    text: "Selecciona los elementos que NO encajan con el grupo: Cuadrado, Círculo, Triángulo, Pizza.",
+    options: ["Cuadrado", "Círculo", "Triángulo", "Pizza"],
+    options: [
+      { text: "Cuadrado", color: "blue" },
+      { text: "Círculo", color: "green" },
+      { text: "Triángulo", color: "red" },
+      { text: "Pizza", color: "yellow" },
+    ],
     correct: ["Pizza"],
     type: "multi-select",
   },
   {
-    text: "¿Qué número sigue esta serie? 81, 27, 9, 3...",
-    options: ["1", "2", "3", "1/3"],
-    correct: "1",
-    type: "single-select",
+    text: "Encuentra los múltiplos de 3 que también sean menores de 15.",
+    options: ["6", "9", "12", "15", "18"],
+     options: [
+      { text: "6", color: "blue" },
+      { text: "9", color: "green" },
+      { text: "12", color: "red" },
+      { text: "15", color: "yellow" },
+      { text: "18", color: "purple" },
+    ],
+    correct: ["6", "9", "12"],
+    type: "multi-select",
   },
+  {
+  text: "Encuentra el número que sigue en la serie: 1, 2, 4, 7, 11, 16...",
+  options: ["20", "21", "22", "23"],
+  correct: "22",
+  type: "single-select",
+  },
+  {
+  text: "Selecciona las imágenes que siguen este patrón: 🌕🌗🌑🌒🌕...",
+  options: [
+    { text: "🌕", color: "yellow" },
+    { text: "🌗", color: "purple" },
+    { text: "🌑", color: "black" },
+    { text: "🌒", color: "white" },
+    { text: "🌓", color: "blue" }
+  ],
+  correct: ["🌕", "🌗", "🌑", "🌒"],
+  type: "multi-select",
+},
+
+
+
+
 ];
+
 
 let currentChallenge = 0;
 
@@ -60,23 +146,11 @@ function loadChallenge() {
   const challenge = challenges[currentChallenge];
   challengeText.textContent = challenge.text;
 
-  if (challenge.disorderColors) {
+  if (challenge.type === "multi-select") {
     challenge.options.forEach((option) => {
       const button = document.createElement("button");
       button.textContent = option.text;
-      button.classList.add("option", "color-disorder", option.class);
-      button.addEventListener("click", () => {
-        button.classList.toggle("selected");
-      });
-      optionsDiv.appendChild(button);
-    });
-
-    nextBtn.style.display = "inline-block";
-    nextBtn.onclick = checkMultiSelect;
-  } else if (challenge.type === "multi-select") {
-    challenge.options.forEach((option) => {
-      const button = document.createElement("button");
-      button.textContent = option;
+      button.style.color = option.color;
       button.classList.add("option");
       button.addEventListener("click", () => {
         button.classList.toggle("selected");
@@ -132,5 +206,23 @@ function nextChallenge() {
     loadChallenge();
   } else {
     challengeArea.innerHTML = "<p>¡Felicidades! Completaste todos los desafíos del samurái. 🥋</p>";
+  showVictoryMessage(); // Muestra el mensaje al ganar
+
   }
+}
+// Función para mostrar el mensaje de victoria y el GIF
+function showVictoryMessage() {
+  const victoryMessage = document.getElementById("victory-message");
+  const samuraiGif = document.getElementById("samurai-gif");
+
+  // Establecer la URL del GIF (puedes reemplazarla con tu propio GIF)
+  samuraiGif.src = "https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif"; // GIF del samurái
+
+  // Mostrar el mensaje y el GIF
+  victoryMessage.style.display = "block";
+}
+
+// Lógica para llamar a la función cuando el jugador gane
+if (gameIsWon) {
+  showVictoryMessage();
 }
