@@ -1,39 +1,38 @@
-/* Estilo general del juego */
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+  background: linear-gradient(to bottom, #1c1c3c, #764ba2);
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #333;
+  color: #f4f4f4;
   text-align: center;
 }
 
 #game-container {
-  background-color: white;
+  background: #2e2e3e;
   border-radius: 15px;
   padding: 20px;
   width: 90%;
-  max-width: 600px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
-  color: #d94e67;
+  color: #f4a261;
   font-size: 2rem;
   margin-bottom: 10px;
-  animation: pulse 1.5s infinite;
+  animation: glow 1.5s infinite;
 }
 
-@keyframes pulse {
+@keyframes glow {
   0%, 100% {
-    transform: scale(1);
+    text-shadow: 0 0 5px #f4a261, 0 0 10px #e76f51;
   }
   50% {
-    transform: scale(1.1);
+    text-shadow: 0 0 10px #f4a261, 0 0 20px #e76f51;
   }
 }
 
@@ -44,80 +43,75 @@ button {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background: linear-gradient(to right, #d94e67, #fcb69f);
+  background: linear-gradient(to right, #e76f51, #f4a261);
   transition: all 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(to right, #fcb69f, #d94e67);
+  background: linear-gradient(to right, #f4a261, #e76f51);
   transform: scale(1.05);
 }
 
 .option {
   padding: 10px 15px;
-  background-color: #ffe4e1;
-  border: 2px solid #d94e67;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background-color: #2e2e3e;
+  color: #f4f4f4;
+  margin: 5px;
+}
+
+.option.selected {
+  border: 2px solid #f4a261;
+  background-color: #e76f51;
+  color: white;
 }
 
 .option:hover {
   transform: scale(1.1);
-  background-color: #d94e67;
-  color: white;
-}
-
-.option.selected {
-  background-color: #d94e67;
-  color: white;
-  border: 2px solid #fcb69f;
 }
 
 #feedback {
   margin-top: 10px;
   font-weight: bold;
-  color: #333;
+  color: #f4a261;
 }
 
-@media (max-width: 600px) {
-  button {
-    font-size: 0.9rem;
-  }
-
-  .option {
-    font-size: 0.9rem;
-  }
-}
-.option {
-  padding: 10px 15px;
-  background-color: #ffe4e1;
-  border: 2px solid #d94e67;
+#next-btn {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  background-color: #e76f51;
   border-radius: 8px;
-  font-size: 1rem;
+  color: white;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  display: none;
+  margin-top: 15px;
+  border: none;
+  transition: all 0.3s ease;
 }
 
-.option:hover {
-  transform: scale(1.1);
-  background-color: #d94e67;
-  color: white;
+#next-btn:hover {
+  background-color: #f4a261;
+  transform: scale(1.05);
+}
+#victory-message {
+  display: none; /* Oculto al principio */
+  text-align: center;
+  margin-top: 20px;
 }
 
-.option.selected {
-  background-color: #8ecae6;
-  color: white;
-  border: 2px solid #219ebc;
+#victory-message p {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.option.color-disorder {
-  color: white;
-  font-weight: bold;
+#samurai-gif {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-
-.option.color-disorder.red { background-color: red; }
-.option.color-disorder.blue { background-color: blue; }
-.option.color-disorder.yellow { background-color: yellow; }
-.option.color-disorder.green { background-color: green; }
