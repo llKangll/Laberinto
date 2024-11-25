@@ -216,7 +216,7 @@ function showVictoryMessage() {
   const samuraiGif = document.getElementById("samurai-gif");
 
   // Establecer la URL del GIF (puedes reemplazarla con tu propio GIF)
-  samuraiGif.src = "https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif"; // GIF del samurái
+  samuraiGif.src = "https://media1.tenor.com/m/R4d1f5wbUOcAAAAd/cheems-samurai.gif"; // GIF del samurái
 
   // Mostrar el mensaje y el GIF
   victoryMessage.style.display = "block";
